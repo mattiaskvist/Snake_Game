@@ -129,6 +129,12 @@ function random_food(min, max) {
 function gen_food() {
     food_x = random_food(0, snakeboard.width - 10);
     food_y = random_food(0, snakeboard.height - 10);
+    // if food is where snake is, generate new food
+    snake.forEach(function has_snake_eaten_food(part) {
+        const has_eaten = part.x == food_x && part.y == food_y;
+        if (has_eaten) gen_food();
+    }
+    )
 }
 
 function draw_food() {
